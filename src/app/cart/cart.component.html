@@ -9,7 +9,7 @@
         <img [src]="product.image" alt="Product Image" />
         <div class="card-details">
           <p>{{ product.description }}</p>
-          <button mat-raised-button color="accent" (click)="handlePayment()">Pay</button>
+          <button mat-raised-button color="accent" (click)="handlePayment(product)">Pay</button>
         </div>
       </div>
     </div>
