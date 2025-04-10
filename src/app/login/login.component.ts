@@ -6,23 +6,43 @@ import { Component } from '@angular/core';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  constructor() {}
+  images: string[] = [
+    'assets/images/Japan1.jpg',
+    'assets/images/Japan2.jpg',
+    'assets/images/Japan3.jpg'
+  ];
+  currentImageIndex = 0;
+  currentImage = this.images[0];
 
-  onLoginClick(): void {
-    // Hide the login banner
-    const loginBanner = document.querySelector('.login-banner') as HTMLElement;
-    loginBanner.style.display = 'none';
+  searchText: string = '';
+  isFocused: boolean = false;
 
-    // Show the images
-    const content = document.getElementById('content');
-    if (content) {
-      content.classList.remove('hidden');
-    }
+  isCartView = false;
 
-    // Apply delay animations on images
-    const images = document.querySelectorAll('.image-gallery img');
-    images.forEach((img, index) => {
-    //   img.style.animationDelay = `${index * 0.5}s`; // Stagger animations
-    });
+  ngOnInit(): void {
+    setInterval(() => {
+      this.currentImageIndex = (this.currentImageIndex + 1) % this.images.length;
+      this.currentImage = this.images[this.currentImageIndex];
+    }, 4000);
+  }
+
+  clearSearch() {
+    this.searchText = ''; 
+  }
+
+  onFocus() {
+    this.isFocused = true;
+  }
+
+  onBlur() {
+    this.isFocused = false;
+  }  
+  
+  enterCartView() {
+    this.isCartView = true;
+  }
+  
+  existCartView() {
+    this.isCartView = true;
   }
 }

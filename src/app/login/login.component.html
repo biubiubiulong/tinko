@@ -1,38 +1,48 @@
+<mat-toolbar color="primary" class="top-toolbar">
+  <span class="brand">Tinko Travel</span>
 
-<div class="login-banner">
-  {{ 'Tinko Travel' }}
+  <span class="spacer"></span>
 
-  En
+  <mat-form-field class="search-bar" appearance="outline">
+    <mat-label *ngIf="!isFocused">Search</mat-label>    
+    <input matInput
+    placeholder="Search destinations, ideas..."
+    [(ngModel)]="searchText"
+    (focus)="onFocus()"
+    (blur)="onBlur()" />
+    <button mat-icon-button matSuffix>
+      <mat-icon>search</mat-icon>
+    </button>
+  </mat-form-field>
 
-  Fav
+  <span class="spacer"></span> 
 
-  Login
-  
-  Contact
-  
-  Search
+  <div class="button-container">
+    <button mat-button>En</button>
+    <button mat-button>Fav</button>
+    <button mat-button>Contact</button>
+    <button mat-button>Login</button>
+  </div>
+  <button mat-raised-button color="accent" class="cart-button" (click)="enterCartView()">Cart</button>
+</mat-toolbar>
 
-  <button>
-    {{ 'Cart' }}
-  </button>
+<mat-toolbar color="accent" class="second-toolbar">
+  <div class="nav-container">
+    <button mat-button class="nav-button">Destination</button>
+    <button mat-button class="nav-button">Inspiration</button>
+    <button mat-button class="nav-button">Chauffeur Service</button>
+    <button mat-button class="nav-button">News</button>
+    <button mat-button class="nav-button">About us</button>
+  </div>
+</mat-toolbar>
 
+<app-cart *ngIf="isCartView"></app-cart>
 
-  <div>
-    {{ 'Destination' }}
-    
-    {{ 'Inspiration' }}
-    
-    {{ 'Chauffeur Service' }}
-    
-    {{ 'News' }}
-    
-    {{ 'About us' }}
+<div *ngIf="!isCartView"  class="background" [ngStyle]="{ 'background-image': 'url(' + currentImage + ')' }">
+  <div class="content">
+    <h1>Welcome to Tinko Travel</h1>
   </div>
 </div>
-
-<div id="content" >
-  <div class="image-gallery">
-    <img src="assets/images/Japan.jpg" alt="Japan">
-  </div>
-</div>
   
+<!-- ng build --configuration production --base-href /tinko/ -->
+<!-- npx angular-cli-ghpages --dir=dist/tinko -->

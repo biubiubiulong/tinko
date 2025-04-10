@@ -1,1 +1,24 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+
+// Define a custom dark theme palette
+$my-dark-primary: mat.define-palette(mat.$grey-palette, 900);
+$my-dark-accent: mat.define-palette(mat.$grey-palette, 500);
+$my-dark-warn: mat.define-palette(mat.$red-palette);
+
+$my-dark-theme: mat.define-dark-theme((
+  color: (
+    primary: $my-dark-primary,
+    accent: $my-dark-accent,
+    warn: $my-dark-warn,
+  )
+));
+
+@include mat.all-component-themes($my-dark-theme);
+
+// Global background & text
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #121212;
+  color: #e0e0e0;
+}
